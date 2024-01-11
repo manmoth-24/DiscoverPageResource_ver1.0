@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>ソースを表示</title>
+        <link rel="stylesheet" href="stylesheet.css">
+    </head>
+    <body>
+        <input type="url" id="sourceURL">
+        <input type="submit" value="送信" onclick="DisplaySourceURL()">
+        <div id="movementItems">
+            <p id="exportText">URLはここに表示されます———</p>
+        </div>
+        <script>
+            // クリップボードへコピー（コピーの処理）
+            function copyToClipboard (tagValue) {
+                if (navigator.clipboard) { // navigator.clipboardが使えるか判定する
+                        return navigator.clipboard.writeText(tagValue).then(function () { // クリップボードへ書きむ
+                    })
+                } else {
+                    tagText.select() // inputタグを選択する
+                    document.execCommand('copy') // クリップボードにコピーする
+                    messageActive() //メッセージを表示する
+                }
+            }
+            const MakeCopyButton = (link)=>{
+                let newCopyButton = `<input type="submit" onclick="copyToClipboard ('${link}')" value="コピー">`
+                return newCopyButton
+            }
+            const DisplaySourceURL = ()=>{
+                let sourceURL = document.getElementById("sourceURL").value
+                let movementItems = document.getElementById("movementItems")
+                let exportTextPort = document.getElementById("exportText")
+                if (document.getElementById("exportText".tag == "p")){
+                    
+                }
+                
+                let withSourceNewURL = 'view-source:' + sourceURL
+
+                let innerList = `<li><a href="${withSourceNewURL}" about="_blank">${withSourceNewURL}</a><br>${MakeCopyButton(withSourceNewURL)}</li>`
+                console.log(movementItems.tag="p" && exportTextPort.innerHTML == "URLはここに表示されます———")
+                if (movementItems.tag="p" && exportTextPort.innerHTML == "URLはここに表示されます———"){
+                    movementItems.innerHTML = `<ol id="exportText">${innerList}</ol>`
+                    console.log("First")
+                }
+                else{
+                    let exportList = document.getElementById("exportText")
+                    exportList.innerHTML += innerList
+                    console.log("Second,Third,....")
+                }
+            }
+        </script>
+    </body>
+</html>
